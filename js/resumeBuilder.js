@@ -183,7 +183,7 @@ projects.display = function () {
        	var formattedProjectTitle = HTMLprojectTitle.replace('%data%', project.title).replace('#', project.url);
         var formattedProjectDates = HTMLprojectDates.replace('%data%', project.dates);
         var formattedProjectDescription = HTMLprojectDescription.replace('%data%', project.description);
-        var formattedProjectImage = HTMLprojectImage.replace('%data%', image);
+        var formattedProjectImage = HTMLprojectImage.replace('%data%', project.images);
         $('.project-entry:last').append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription, formattedProjectImage);
       });
       
@@ -195,10 +195,9 @@ projects.display();
 
 education.display = function() {
 
-    //loop starts below
     education.schools.forEach(function(school) {
 
-        $("#education").append(HTMLschoolStart);  // this seems to create too many repeats ?? 
+        $("#education").append(HTMLschoolStart);   
 
         var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
         var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
@@ -210,14 +209,12 @@ education.display = function() {
 
        $(".education-entry:last").append(formattedSchoolName_Degree, formattedschoolDates, formattedSchoolMajor, formattedSchoolLocation);
         
-        // $(".education-entry").append(formattedSchoolName, formattedSchoolDegree, formattedschoolDates, formattedSchoolMajor, formattedSchoolLocation);
     });
 
 
 
     $("#education").append(HTMLonlineClasses);
 
-    //loop starts below
     education.onlineCourses.forEach(function(s) {
 
           $("#education").append(HTMLschoolStart);
@@ -233,7 +230,6 @@ education.display = function() {
 
         $(".education-entry:last").append(formattedOnlineTitle_School, formattedOnlineDates, formattedOnlineURL);
 
-        // $(".education-entry:last").append(formattedOnlineSchool, formattedOnlineTitle, formattedOnlineDates, formattedOnlineURL);
 
     });
 };
