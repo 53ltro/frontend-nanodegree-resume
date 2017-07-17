@@ -6,14 +6,14 @@ var bio = {
 	"name": "Ivan Canevaro",
 	"role": "Senior Designer",
 	"contacts": { 
-		//"mobile": "310-658-6382",
+		"mobile": "310-658-6382",
 		"email": "ivancanevaro@gmail.com",
 		"github": "53ltro",
 		"location": "Los Angeles, California, United States"
 	},
 	"welcomeMessage": "Senior Designer in Los Angeles, California.",
 	"skills": ["Adobe CC 2017", " Art & Design", " Animate CC", " HTML5", " CSS3", " Web development"],
-	"bioPic" : "images/ivan-resume-pic-387x387.jpg"
+	"biopic" : "images/ivan-resume-pic-387x387.jpg"
 };
 
 // Education!---------------->
@@ -75,14 +75,14 @@ var work = {
 			"title": "Junior visual Designer",
 			"dates": "July 2011 - June 2015",
 			"location": "Santa Monica, California, United States",
-			"description": "Create'd' web design content for gaming sites, such as  user experience, web development, flash animation, motion graphics, advertisements for online games, mobile ap'p's, console games, and other products related to the gaming industry."
+			"description": "Create'd' web design content for gaming sites, such as  user experience, web development, flash animation, motion graphics, advertisements for online games, mobile apps, console games, and other products related to the gaming industry."
 		},
 		{
 			"employer": "GSN Games / CPMStar",
 			"title": "Lead Senior Visual Designer",
 			"dates": "June 2015 - Present",
 			"location": "Santa Monica, California, United States",
-			"description": "In charge of creating web design content for gaming sites, like user experience, web development, flash animation, HTML5 Adobe CC 2017 animation, motion graphics, print design, layout design, advertisements for online games, mobile ap'p's, console games, and other products related to the gaming industry."
+			"description": "In charge of creating web design content for gaming sites, like user experience, web development, flash animation, HTML5 Adobe CC 2017 animation, motion graphics, print design, layout design, advertisements for online games, mobile apps, console games, and other products related to the gaming industry."
 		}
 
 	]
@@ -105,16 +105,18 @@ var projects = {
 
 // Display Content!---------------->
 
+bio.display = function() {
+
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 $("#header").prepend(formattedRole);
 
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
 $("#header").prepend(formattedName);
 
-var formattedPic = HTMLbioPic.replace("%data%", bio.bioPic);
+var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
 $("#header").append(formattedPic);
 
-var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
+var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 $("#header").append(formattedwelcomeMsg);
 
 //display bio contacts. take out phone # before posting live for exam--------------->
@@ -122,7 +124,7 @@ $("#header").append(formattedwelcomeMsg);
 var formattedContactInfo = [];
 formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
 formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
-//formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
+formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
 formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
 
 for (var i = 0; i < bio.skills.length; i++) {
@@ -132,21 +134,17 @@ for (var i = 0; i < bio.skills.length; i++) {
 
 //display bio skills------------------->
 
-if(bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
-	$("#skills").append(formattedSkill);
-}
+    	// format and append skills
+    	$("#header").append(HTMLskillsStart);
+    	bio.skills.forEach(function(skill) {
+    	var formattedSkill = HTMLskills.replace("%data%", skill);
+    	$("#skills").append(formattedSkill);
+    	//console.log(bio.skills);
+
+   });
+};
+
+bio.display();
 
 // display work info------------>
 
@@ -177,14 +175,14 @@ projects.display = function () {
    //start loop
    projects.projects.forEach(function(project) {
       
-      $('#projects').append(HTMLprojectStart);
+      $("#projects").append(HTMLprojectStart);
 
        project.images.forEach(function(image) {
-       	var formattedProjectTitle = HTMLprojectTitle.replace('%data%', project.title).replace('#', project.url);
-        var formattedProjectDates = HTMLprojectDates.replace('%data%', project.dates);
-        var formattedProjectDescription = HTMLprojectDescription.replace('%data%', project.description);
-        var formattedProjectImage = HTMLprojectImage.replace('%data%', project.images);
-        $('.project-entry:last').append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription, formattedProjectImage);
+       	var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title).replace("#", project.url);
+        var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
+        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", project.images);
+        $(".project-entry:last").append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription, formattedProjectImage);
       });
       
    });
@@ -266,6 +264,3 @@ $("#main").append(internationalizeButton);
 //here's a map!--------------->
 
 $("#mapDiv").append(googleMap);
-
-
-
